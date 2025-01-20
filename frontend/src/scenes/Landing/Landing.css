@@ -1,0 +1,40 @@
+.jt-landing {
+    background-color: var(--background);
+    height: 839px;
+    border-radius: 0 0 200px 200px;
+}
+
+.landing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+}
+
+.landing-header div:nth-child(1) {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.landing-header div:nth-child(1) > p, a, h1 {
+    margin: unset;
+}
+
+.landing-header .sub-heading {
+    color: var(--subtle-grey);
+    font-size: var(--font-s);
+}
+
+.landing-header .get-started {
+    background-color: var(--accent-color1);
+    padding: .8rem 1.1rem;
+    color: var(--background-white);
+    border-radius: var(--border-radius);
+    width: fit-content;
+}
+
+.landing-header .note {
+    font-size: var(--font-xs);
+}

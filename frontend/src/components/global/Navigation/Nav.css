@@ -1,0 +1,25 @@
+.jt-nav {
+    width: 100vw;
+    margin-bottom: 1rem;
+}
+
+.jt-nav .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+
+.jt-nav .wrapper div:nth-child(2) {
+    display: flex;
+    gap: 27px;
+}
+
+.jt-nav strong, .jt-nav a {
+    padding-block: 1rem;
+}
+
+.jt-nav strong {
+    font-size: 1.2rem;
+}

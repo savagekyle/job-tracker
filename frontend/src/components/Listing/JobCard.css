@@ -1,0 +1,7 @@
+.job-card {
+    background-color: var(--background-white);
+    padding: 1rem;
+    box-shadow: var(--box-shadow-primary);
+    width: fit-content;
+    border-radius: var(--border-radius);
+}
