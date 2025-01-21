@@ -12,7 +12,7 @@ function Nav() {
                 <a href="/my-jobs">My Jobs</a>
                 <a href="/our-goal">Our Goal</a>
             </div>
-            <a href="/register">
+            <a className="register" href="/register">
               Register
             </a>
         </div>      

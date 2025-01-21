@@ -2,6 +2,9 @@
     background-color: var(--background);
     height: 839px;
     border-radius: 0 0 200px 200px;
+    position: relative;
+    margin-bottom: 10rem;
+    z-index: 10;
 }
 
 .landing-header {
@@ -32,9 +35,58 @@
     padding: .8rem 1.1rem;
     color: var(--background-white);
     border-radius: var(--border-radius);
+    border: 1px solid var(--accent-color1);
     width: fit-content;
+    transition: all ease-in-out .3s;
+}
+
+.landing-header .get-started:hover {
+    background-color: transparent;
+    color: var(--subtle-grey)
 }
 
 .landing-header .note {
     font-size: var(--font-xs);
+}
+
+.header-img img {
+    height: 377px;
+    width: 377px;
+}
+
+.header-img {
+    position: relative;
+    margin-top: 4.5rem;
+}
+
+.header-img .cylinder {
+    background-color: var(--accent-color2);
+    transform: rotate(35deg);
+    width: 330px;
+    height: 68px;
+    position: absolute;
+    border-radius: 100px;
+    z-index: -1;
+}
+
+.header-img .cylinder:nth-child(2) {
+    top: 20px;
+    right: -100px;
+}
+.header-img .cylinder:nth-child(3) {
+    left: -90px;
+    top: -6px;
+}
+.header-img .cylinder:nth-child(4) {
+    left: -130px;
+    top: 130px;
+}
+.header-img .cylinder:nth-child(5) {
+    bottom: 40px;
+    left: -130px;
+}
+
+.header-img .cylinder:nth-child(6) {
+    right: -80px;
+    bottom: 70px;
 }

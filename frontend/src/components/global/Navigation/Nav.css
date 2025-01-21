@@ -10,7 +10,6 @@
     height: 60px;
 }
 
-
 .jt-nav .wrapper div:nth-child(2) {
     display: flex;
     gap: 27px;
@@ -22,4 +21,17 @@
 
 .jt-nav strong {
     font-size: 1.2rem;
+}
+
+.jt-nav .wrapper .register {
+    background-color: var(--accent-color2);
+    padding: .6rem 1.5rem;
+    color: var(--background-white);
+    border-radius: var(--border-radius);
+    width: fit-content;
+    transition: background-color ease-in-out .3s;
+}
+
+.jt-nav .wrapper .register:hover {
+    background-color: var(--accent-color1);
 }
