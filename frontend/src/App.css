@@ -17,6 +17,7 @@ a:hover {
 :root {
     --background: #E7FBFF;
     --background-white: #fff;
+    --background-canvas: ##f4f2ee;
     --accent-color1: #26C9DF;
     --accent-color2: #98DAE2;
     --subtle-grey: #606060;
