@@ -5,7 +5,9 @@ function Nav() {
     <nav className="jt-nav">
         <div className="container wrapper">
             <div>
-                <strong>Job Tracker</strong>
+                <a href="/">
+                  <strong>Job Tracker</strong>
+                </a>
             </div>
             <div>
                 <a href="/how-to">How To</a>

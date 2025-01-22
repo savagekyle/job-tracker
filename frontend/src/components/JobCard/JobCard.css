@@ -1,0 +1,18 @@
+.board-wrapper .application-list>.job-card, .board-wrapper .application-expanded {
+    background-color: var(--background-white);
+    border: 1px solid var(--light-grey2);
+    border-radius: var(--border-radius);
+}
+
+.board-wrapper .application-list>.job-card {
+    padding: 1rem;
+    line-height: 1.65;
+}
+
+.application-list>.job-card>.company, .location, .pay {
+    font-size: var(--font-s);
+}
+
+.application-list>.job-card>.location {
+    color: var(--subtle-grey);
+}

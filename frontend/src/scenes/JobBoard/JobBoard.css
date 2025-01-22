@@ -1,0 +1,94 @@
+.job-board {
+    position: relative;
+    background-color: var(--background-canvas);
+    min-height: 100vh;
+    padding-bottom: 2rem;
+    z-index: 1;
+    clip-path: inset(0 0 0 0);
+    overflow: hidden;
+}
+
+.job-board h1 {
+    margin-block: 3rem 1.5rem;
+    font-weight: 400;
+    font-size: var(--font-xxl);
+}
+
+.board-wrapper {
+    display: flex;
+    gap: 1rem;
+    height: 738px;
+    overflow: hidden;
+}
+
+.board-wrapper .application-list {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    overflow-y: scroll;
+}
+
+.board-wrapper > .application-list, .application-expanded {
+    flex: 1;
+}
+
+/* Background designs */
+
+.job-board > .bg-blob {
+    background-color: var(--background);
+    height: 839px;
+    width: 874px;
+    border-radius: 0 800px 1500px 800px;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.job-board .bg-blob:nth-child(2) {
+    top: -200px;
+    left: -70px;
+}
+
+.job-board .bg-blob:nth-child(3) {
+    transform: rotate(180deg);
+    bottom: 25px;
+    right: -300px;
+}
+
+.job-board > .bg-cylinder {
+    height: 68px;
+    width: 664px;
+    background-color: var(--accent-color2);
+    border-radius: 100px;
+    transform: rotate(45deg);
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.job-board .bg-cylinder:nth-child(4) {
+    bottom: 0px;
+    left: -200px;
+}
+
+.job-board .bg-cylinder:nth-child(5) {
+    top: 200px;
+    left: -10px;
+    width: 462px;
+}
+
+.job-board .bg-cylinder:nth-child(6) {
+    left: 530px;
+    top: 250px;
+    width: 462px;
+}
+
+.job-board .bg-cylinder:nth-child(7) {
+    left: 583px;
+    top: 133px;
+}
+
+.job-board .bg-cylinder:nth-child(8) {
+    right: -90px;
+    top: 215px;
+}
