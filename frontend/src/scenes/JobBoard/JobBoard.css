@@ -39,7 +39,7 @@
     height: 839px;
     width: 874px;
     border-radius: 0 800px 1500px 800px;
-    position: absolute;
+    position: fixed;
     z-index: -1;
     overflow: hidden;
 }
@@ -61,7 +61,7 @@
     background-color: var(--accent-color2);
     border-radius: 100px;
     transform: rotate(45deg);
-    position: absolute;
+    position: fixed;
     z-index: -1;
     overflow: hidden;
 }
