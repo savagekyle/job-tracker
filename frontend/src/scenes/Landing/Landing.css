@@ -1,3 +1,7 @@
+.jt {
+    overflow-x: hidden;
+}
+
 .jt-landing {
     background-color: var(--background);
     height: 839px;
@@ -67,6 +71,8 @@
     position: absolute;
     border-radius: 100px;
     z-index: -1;
+    clip-path: inset(0 0 0 0);
+    overflow: hidden;
 }
 
 .header-img .cylinder:nth-child(2) {

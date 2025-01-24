@@ -5,6 +5,8 @@ import SearchBox from '../../components/Search/SearchBox';
 
 function Landing() {
   return (
+    <div className="jt">
+
     <div className="jt-landing">
       <Nav />
       <div className="landing-header container">
@@ -25,6 +27,8 @@ function Landing() {
       </div>
       <SearchBox />
     </div>
+    </div>
+
   );
 }
 
