@@ -1,0 +1,78 @@
+.our-goal {
+    position: relative;
+}
+
+.our-goal .banners {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 700px;
+    justify-content: center;
+}
+
+.our-goal .banners .banner-top, .banner-bottom {
+    width: 100%;
+    min-height: 270px;
+    padding: 2rem;
+    line-height: 2.5;
+    box-shadow: var(--box-shadow-primary);
+}
+
+.our-goal .banners .banner-top {
+    background-color: var(--background-canvas);
+}
+
+.our-goal .banners .banner-bottom {
+    background-color: var(--accent-color1);
+    color: var(--background-white);
+}
+
+.our-goal .banners .banner-bottom h2 {
+    text-align: right;
+}
+
+/* Background Design */
+
+.our-goal > .bubble {
+    position: fixed;
+    background-color: var(--background);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.our-goal .bubble:nth-child(1) {
+    height: 275px;
+    width: 275px;
+    top: -21px;
+    left: -24px;
+}
+
+.our-goal .bubble:nth-child(2) {
+    height: 308px;
+    width: 325px;
+    background-color: var(--accent-color2);
+    left: 268px;
+    top: 221px;
+}
+
+.our-goal .bubble:nth-child(3) {
+    height: 557px;
+    width: 557px;
+    top: 632px;
+    left: 163px;
+}
+
+.our-goal .bubble:nth-child(4) {
+    height: 213px;
+    width: 225px;
+    top: 137px;
+    left: 782px;
+}
+
+.our-goal .bubble:nth-child(5) {
+    background-color: var(--accent-color2);
+    height: 361px;
+    width: 361px;
+    left: 1156px;
+    top: 316px;
+}
