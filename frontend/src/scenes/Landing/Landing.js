@@ -1,9 +1,27 @@
 import './Landing.css';
+import axios from "axios";
+import DOMPurify from 'dompurify';
+import { useState } from 'react';
 import Nav from '../../components/global/Navigation/Nav';
 import JobSearch from "../../assets/job-search.png"
 import SearchBox from '../../components/Search/SearchBox';
 
 function Landing() {
+  const [url, setUrl] = useState("");
+    const [jobData, setJobData] = useState(null);
+    const [error, setError] = useState("");
+
+    const handleScrape = async () => {
+        try {
+            const response = await axios.post("http://127.0.0.1:5000/scrape-job", { url });
+            setJobData(response.data);
+            setError("");
+        } catch (err) {
+            setError("Failed to fetch job details");
+            console.error(err);
+        }
+    };
+
   return (
     <div className="jt">
 
@@ -25,7 +43,24 @@ function Landing() {
           <div className="cylinder"></div>
         </div>
       </div>
-      <SearchBox />
+      <SearchBox 
+          url={url} 
+          setUrl={setUrl} 
+          handleScrape={handleScrape} 
+          error={error} 
+        />
+        {jobData && (
+                <div>
+                    <h2>Job Details</h2>
+                    <p><strong>Date Applied:</strong> {jobData.date}</p>
+                    <p><strong>Company:</strong> {jobData.company}</p>
+                    <p><strong>Job Title:</strong> {jobData["job-title"]}</p>
+                    <p><strong>Location:</strong> {jobData.location}</p>
+                    <p><strong>Description:</strong></p>
+                    {/* Sanitize Raw HTML */}
+                    <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(jobData.description) }}></p>
+                </div>
+            )}
     </div>
     </div>
 
