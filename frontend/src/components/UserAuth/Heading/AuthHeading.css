@@ -1,0 +1,20 @@
+.userAuth h1 {
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.userAuth .authHeading {
+    margin-bottom: 3rem;
+}
+
+.authHeading p a {
+    color: var(--accent-color1);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: all .3s ease-in-out;
+}
+
+.authHeading p a:hover {
+    color: var(--accent-color2);
+}

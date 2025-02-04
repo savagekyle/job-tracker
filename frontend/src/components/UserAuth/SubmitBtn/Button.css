@@ -1,0 +1,16 @@
+.submitBtn {
+    background-color: var(--accent-color2);
+    color: var(--background-white);
+    transition: all .3s ease-in-out;
+    padding: 1.3rem;
+    width: 100%;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 3rem;
+}
+
+.submitBtn:hover {
+    background-color: var(--accent-color1);
+}

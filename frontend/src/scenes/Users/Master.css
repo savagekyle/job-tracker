@@ -1,0 +1,44 @@
+.auth {
+    margin-block: 4rem;
+    position: relative;
+}
+
+.userAuth {
+    display: flex;
+    gap: 6rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.userAuth .imgWrapper, .form {
+    flex: 1;
+}
+
+.userAuth .form {
+    width: 100%;
+}
+
+.userAuth .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.userAuth .inputWrapper .inputSplit {
+    display: flex;
+    gap: 1rem;
+}
+
+
+/* Background Design */
+
+.background-design {
+    position: fixed;
+    bottom: -50px;
+    right: -50px;
+    background-color: var(--background);
+    height: 1114px;
+    width: 990px;
+    z-index: -1;
+    border-radius: 8000px 0 0 0;
+}

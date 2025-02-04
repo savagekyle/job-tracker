@@ -1,0 +1,16 @@
+.userAuth form input {
+    width: 100%;
+    background-color: #D9D9D9;
+    border-radius: var(--border-radius);
+    padding: 1.3rem;
+    border: none;
+    font-size: 18px;
+}
+
+.userAuth form input::placeholder {
+    color: #444444;
+}
+
+.userAuth form input:focus-visible {
+    outline: 1px auto var(--accent-color1) !important;
+}
