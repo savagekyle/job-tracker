@@ -1,15 +1,28 @@
 import './Landing.css';
 import axios from "axios";
 import DOMPurify from 'dompurify';
-import { useState } from 'react';
 import Nav from '../../components/global/Navigation/Nav';
 import JobSearch from "../../assets/job-search.png"
 import SearchBox from '../../components/Search/SearchBox';
+import React, { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 function Landing() {
   const [url, setUrl] = useState("");
     const [jobData, setJobData] = useState(null);
     const [error, setError] = useState("");
+
+    const [user, setUser] = useState(null);
+    
+      useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+          setUser(currentUser); // Set user on login/logout
+        });
+    
+        return () => unsubscribe(); // Clean up the listener
+      }, []);
 
     const handleScrape = async () => {
         try {
@@ -31,7 +44,9 @@ function Landing() {
         <div>
             <h1 className="heading">Logging your job applications just became simple</h1>
             <p className="sub-heading">Your one stop solution to tracking all of your job applications.</p>
-            <a className="get-started" href="/register">Get Started</a>
+            {!user && (
+                          <a className="get-started" href="/register">Get Started</a>
+             ) }
             <p className="note"><strong>Note:</strong> Job Tracker is only compatible with LinkedIn jobs at this time.</p>
         </div>
         <div className="header-img">
