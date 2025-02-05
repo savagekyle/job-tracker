@@ -4,14 +4,14 @@ import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 // Firebase Config (Replace with your own Firebase config from Firebase Console)
 const firebaseConfig = {
-    apiKey: "AIzaSyDGCEwMmptTLDV0nDvvJc8Na5yOCMMf50c",
-    authDomain: "job-tracker-726dc.firebaseapp.com",
-    projectId: "job-tracker-726dc",
-    storageBucket: "job-tracker-726dc.appspot.com",
-    messagingSenderId: "980961754839",
-    appId: "1:980961754839:web:248ef0e45c217628d2fa92",
-    measurementId: "G-E5VYR4JYNF"
-  };
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
