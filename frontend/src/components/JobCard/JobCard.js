@@ -1,12 +1,12 @@
 import "./JobCard.css"
 
-const JobCard = () => {
+const JobCard = (props) => {
   return (
     <div className="job-card">
-        <h4 className="title">Frontend Developer</h4>
-        <p className="company">Dice</p>
-        <p className="location">United States (Remote)</p>
-        <p className="pay">$100K/yr - $125K/yr</p>
+        <h4 className="title">{props.title}</h4>
+        <p className="company">{props.company}</p>
+        <p className="location">{props.location}</p>
+        <p className="pay">{props.pay ? props.pay : <i>"No compensation provided"</i>}</p>
     </div>
   )
 }

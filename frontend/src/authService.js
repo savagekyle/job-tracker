@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, collection, addDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getFirestore, doc, setDoc, collection, addDoc, query, getDocs } from "firebase/firestore";
 
 // Firebase Config (Replace with your own Firebase config from Firebase Console)
 const firebaseConfig = {
@@ -76,6 +76,7 @@ export const saveJobData = async (user, jobData) => {
             jobTitle: jobData["job-title"],
             location: jobData.location,
             description: jobData.description,
+            pay: jobData.pay,
             savedAt: new Date(),
         });
 
@@ -84,5 +85,35 @@ export const saveJobData = async (user, jobData) => {
         console.error("Error saving job data:", error);
         return { error: error.message };
     }
+};
+
+export const getUserJobs = async () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                console.error("No user is logged in");
+                unsubscribe();
+                return resolve([]); // Return an empty array instead of throwing an error
+            }
+
+            try {
+                const jobsRef = collection(db, "users", user.uid, "jobs");
+                const querySnapshot = await getDocs(jobsRef);
+
+                let jobs = [];
+                querySnapshot.forEach((doc) => {
+                    jobs.push({ id: doc.id, ...doc.data() });
+                });
+
+                console.log("Fetched jobs:", jobs); // Debugging output
+                resolve(jobs);
+            } catch (error) {
+                console.error("Error fetching jobs:", error);
+                reject(new Error("Error fetching jobs: " + error.message));
+            } finally {
+                unsubscribe();
+            }
+        });
+    });
 };
 

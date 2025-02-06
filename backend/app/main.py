@@ -44,6 +44,7 @@ def scrape_job():
             "div", 
             class_="show-more-less-html__markup show-more-less-html__markup--clamp-after-5 relative overflow-hidden"
         ) else None
+        job_data["pay"] = soup.find("div", {"class": "compensation__salary"}).text.strip() if soup.find("div", {"class": "compensation__salary"}).text.strip() else None
 
 
         return jsonify(job_data), 200
