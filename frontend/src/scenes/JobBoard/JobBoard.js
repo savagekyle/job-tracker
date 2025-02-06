@@ -7,14 +7,16 @@ import { useState, useEffect } from "react"
 
 const JobBoard = () => {
 
-  const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [selectedJob, setSelectedJob] = useState(null);
     useEffect(() => {
       const fetchJobs = async () => {
         try {
           const jobData = await getUserJobs();
           setJobs(jobData);
+          setSelectedJob(jobData[0]);
+          console.log(jobData[0]);
         } catch (error) {
           console.error("Failed to fetch jobs:", error);
         } finally {
@@ -24,6 +26,10 @@ const JobBoard = () => {
   
       fetchJobs();
     }, []);
+
+    const handleJobClick = (job) => {
+      setSelectedJob(job);
+    };
 
   return (
     <div className="job-board">
@@ -53,13 +59,14 @@ const JobBoard = () => {
                       company={job.company}
                       location={job.location}
                       pay={job.pay}
+                      onClick={() => handleJobClick(job)}
                     />
                   ))
                 ) : (
-                  <p>No job applications found.</p>
+                  !loading && <p>No job applications found.</p>
                 )}        
                 </div>
-                <ActiveJob />
+                {selectedJob && <ActiveJob job={selectedJob} />} 
             </div>    
         </div>
     </div>

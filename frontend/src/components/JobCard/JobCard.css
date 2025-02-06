@@ -7,6 +7,13 @@
 .board-wrapper .application-list>.job-card {
     padding: 1rem;
     line-height: 1.65;
+    position: relative;
+}
+
+.board-wrapper .application-list>.job-card:hover{
+    background-color: var(--light-grey2);
+    border: 1px solid var(--subtle-grey);
+    cursor: pointer;
 }
 
 .application-list>.job-card>.company, .location, .pay {
@@ -15,4 +22,18 @@
 
 .application-list>.job-card>.location {
     color: var(--subtle-grey);
+}
+
+.job-card .closeIcon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.job-card .dateApplied {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    color: var(--subtle-grey);
+    font-size: var(--font-xs);
 }

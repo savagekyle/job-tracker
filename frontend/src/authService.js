@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, collection, addDoc, query, getDocs } from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, addDoc, getDocs } from "firebase/firestore";
 
 // Firebase Config (Replace with your own Firebase config from Firebase Console)
 const firebaseConfig = {
@@ -77,6 +77,7 @@ export const saveJobData = async (user, jobData) => {
             location: jobData.location,
             description: jobData.description,
             pay: jobData.pay,
+            url: jobData.url,
             savedAt: new Date(),
         });
 

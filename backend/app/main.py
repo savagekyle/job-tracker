@@ -24,11 +24,20 @@ def scrape_job():
         return jsonify({'error': 'URL is required'}), 400
 
     response = requests.get(job_url, headers=headers)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Open a file in write mode and save the content
+        with open('page_content.html', 'w', encoding='utf-8') as file:
+            file.write(response.text)
+        print("HTML content saved successfully.")
+    else:
+        print(f"Failed to retrieve the page. Status code: {response.status_code}")
 
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
         job_data = {}
-
+        job_data["url"] = job_url
         job_data["date"] = todays_date
         # Extract job details (adjust selectors as needed)
         job_data["company"] = soup.find("img", {"class": "artdeco-entity-image"})["alt"] if soup.find(
@@ -44,8 +53,8 @@ def scrape_job():
             "div", 
             class_="show-more-less-html__markup show-more-less-html__markup--clamp-after-5 relative overflow-hidden"
         ) else None
-        job_data["pay"] = soup.find("div", {"class": "compensation__salary"}).text.strip() if soup.find("div", {"class": "compensation__salary"}).text.strip() else None
-
+        salary_element = soup.find("div", {"class": "compensation__salary"})
+        job_data["pay"] = salary_element.text.strip() if salary_element else None
 
         return jsonify(job_data), 200
     else:
