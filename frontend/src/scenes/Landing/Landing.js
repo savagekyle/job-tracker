@@ -6,6 +6,7 @@ import JobSearch from "../../assets/job-search.png"
 import SearchBox from '../../components/Search/SearchBox';
 import React, { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { saveJobData } from '../../authService';
 
 
 function Landing() {
@@ -24,16 +25,25 @@ function Landing() {
         return () => unsubscribe(); // Clean up the listener
       }, []);
 
-    const handleScrape = async () => {
+      const handleScrape = async () => {
         try {
             const response = await axios.post("http://127.0.0.1:5000/scrape-job", { url });
             setJobData(response.data);
             setError("");
+    
+            // Save job data to Firestore under logged-in user
+            if (user) {
+                const saveResponse = await saveJobData(user, response.data);
+                if (saveResponse.error) {
+                    console.error("Failed to save job:", saveResponse.error);
+                }
+            }
         } catch (err) {
             setError("Failed to fetch job details");
             console.error(err);
         }
     };
+    
 
   return (
     <div className="jt">

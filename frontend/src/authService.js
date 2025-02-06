@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, addDoc } from "firebase/firestore";
 
 // Firebase Config (Replace with your own Firebase config from Firebase Console)
 const firebaseConfig = {
@@ -59,3 +59,30 @@ export const logoutUser = async () => {
         return { error: error.message };
     }
 };
+
+// Save Job Data to Firestore under the authenticated user
+export const saveJobData = async (user, jobData) => {
+    if (!user) {
+        return { error: "User is not authenticated" };
+    }
+
+    try {
+        const db = getFirestore();
+        const userJobsRef = collection(db, "users", user.uid, "jobs"); // Subcollection for each user
+
+        await addDoc(userJobsRef, {
+            date: jobData.date,
+            company: jobData.company,
+            jobTitle: jobData["job-title"],
+            location: jobData.location,
+            description: jobData.description,
+            savedAt: new Date(),
+        });
+
+        return { success: true };
+    } catch (error) {
+        console.error("Error saving job data:", error);
+        return { error: error.message };
+    }
+};
+
