@@ -1,20 +1,16 @@
 import './Landing.css';
-import axios from "axios";
 import DOMPurify from 'dompurify';
 import Nav from '../../components/global/Navigation/Nav';
 import JobSearch from "../../assets/job-search.png"
 import SearchBox from '../../components/Search/SearchBox';
 import React, { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { saveJobData } from '../../authService';
+import useJobScraper from '../../useJobScraper';
 
 
 function Landing() {
-  const [url, setUrl] = useState("");
-    const [jobData, setJobData] = useState(null);
-    const [error, setError] = useState("");
-
     const [user, setUser] = useState(null);
+    const { url, setUrl, jobData, error, handleScrape } = useJobScraper();
     
       useEffect(() => {
         const auth = getAuth();
@@ -24,25 +20,6 @@ function Landing() {
     
         return () => unsubscribe(); // Clean up the listener
       }, []);
-
-      const handleScrape = async () => {
-        try {
-            const response = await axios.post("http://127.0.0.1:5000/scrape-job", { url });
-            setJobData(response.data);
-            setError("");
-    
-            // Save job data to Firestore under logged-in user
-            if (user) {
-                const saveResponse = await saveJobData(user, response.data);
-                if (saveResponse.error) {
-                    console.error("Failed to save job:", saveResponse.error);
-                }
-            }
-        } catch (err) {
-            setError("Failed to fetch job details");
-            console.error(err);
-        }
-    };
     
 
   return (
@@ -71,7 +48,7 @@ function Landing() {
       <SearchBox 
           url={url} 
           setUrl={setUrl} 
-          handleScrape={handleScrape} 
+          handleScrape={() => handleScrape(user)}
           error={error} 
         />
         {jobData && (

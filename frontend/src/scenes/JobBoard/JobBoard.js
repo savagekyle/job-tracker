@@ -10,6 +10,7 @@ const JobBoard = () => {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedJob, setSelectedJob] = useState(null);
+    
     useEffect(() => {
       const fetchJobs = async () => {
         try {
@@ -60,6 +61,7 @@ const JobBoard = () => {
                       location={job.location}
                       pay={job.pay}
                       onClick={() => handleJobClick(job)}
+                      active=""
                     />
                   ))
                 ) : (

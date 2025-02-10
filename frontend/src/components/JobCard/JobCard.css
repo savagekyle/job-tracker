@@ -11,7 +11,7 @@
 }
 
 .board-wrapper .application-list>.job-card:hover{
-    background-color: var(--light-grey2);
+    background-color: var(--light-grey1);
     border: 1px solid var(--subtle-grey);
     cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
 
 // Firebase Config (Replace with your own Firebase config from Firebase Console)
 const firebaseConfig = {
@@ -94,19 +94,17 @@ export const getUserJobs = async () => {
             if (!user) {
                 console.error("No user is logged in");
                 unsubscribe();
-                return resolve([]); // Return an empty array instead of throwing an error
+                return resolve([]); // Return empty array instead of throwing an error
             }
 
             try {
                 const jobsRef = collection(db, "users", user.uid, "jobs");
-                const querySnapshot = await getDocs(jobsRef);
+                const q = query(jobsRef, orderBy("savedAt", "desc")); // Order by most recent
 
-                let jobs = [];
-                querySnapshot.forEach((doc) => {
-                    jobs.push({ id: doc.id, ...doc.data() });
-                });
+                const querySnapshot = await getDocs(q);
+                let jobs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-                console.log("Fetched jobs:", jobs); // Debugging output
+                console.log("Fetched jobs:", jobs);
                 resolve(jobs);
             } catch (error) {
                 console.error("Error fetching jobs:", error);
