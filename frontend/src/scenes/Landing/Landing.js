@@ -5,7 +5,7 @@ import JobSearch from "../../assets/job-search.png"
 import SearchBox from '../../components/Search/SearchBox';
 import React, { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import useJobScraper from '../../useJobScraper';
+import  { useJobScraper } from '../../JobScraperContext';
 
 
 function Landing() {

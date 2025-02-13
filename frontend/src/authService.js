@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, addDoc, getDocs, query, orderBy, deleteDoc } from "firebase/firestore";
 
 // Firebase Config (Replace with your own Firebase config from Firebase Console)
 const firebaseConfig = {
@@ -62,31 +62,37 @@ export const logoutUser = async () => {
 
 // Save Job Data to Firestore under the authenticated user
 export const saveJobData = async (user, jobData) => {
-    if (!user) {
+    if (!user || !user.uid) {
+        console.error("❌ Error: User is not authenticated or user.uid is undefined", user);
         return { error: "User is not authenticated" };
     }
 
     try {
+        console.log("✅ Saving job data for user:", user.uid);
+        console.log("📌 Job Data:", jobData);
+
         const db = getFirestore();
-        const userJobsRef = collection(db, "users", user.uid, "jobs"); // Subcollection for each user
+        const userJobsRef = collection(db, "users", user.uid, "jobs");
 
         await addDoc(userJobsRef, {
-            date: jobData.date,
-            company: jobData.company,
-            jobTitle: jobData["job-title"],
-            location: jobData.location,
-            description: jobData.description,
-            pay: jobData.pay,
-            url: jobData.url,
+            date: jobData.date || null,
+            company: jobData.company || "Unknown",
+            jobTitle: jobData["job-title"] || "Unknown",
+            location: jobData.location || "Unknown",
+            description: jobData.description || "No description available",
+            pay: jobData.pay || "Not provided",
+            url: jobData.url || "No URL",
             savedAt: new Date(),
         });
 
+        console.log("✅ Job successfully saved!");
         return { success: true };
     } catch (error) {
-        console.error("Error saving job data:", error);
+        console.error("❌ Error saving job data:", error);
         return { error: error.message };
     }
 };
+
 
 export const getUserJobs = async () => {
     return new Promise((resolve, reject) => {
@@ -114,5 +120,28 @@ export const getUserJobs = async () => {
             }
         });
     });
+};
+
+export const deleteJob = async (jobId) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user || !user.uid) {
+        console.error("❌ Error: User is not authenticated or user.uid is undefined", user);
+        return { error: "User is not authenticated" };
+    }
+
+    try {
+        console.log(`🗑️ Deleting job with ID: ${jobId} for user: ${user.uid}`);
+
+        const jobRef = doc(db, "users", user.uid, "jobs", jobId);
+        await deleteDoc(jobRef);
+
+        console.log("✅ Job successfully deleted!");
+        return { success: true };
+    } catch (error) {
+        console.error("❌ Error deleting job:", error);
+        return { error: error.message };
+    }
 };
 

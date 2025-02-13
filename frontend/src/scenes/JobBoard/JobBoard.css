@@ -32,6 +32,37 @@
     flex: 1;
 }
 
+
+
+.job-app-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-job {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    padding-bottom: .2rem;
+    border-bottom: 1px solid transparent;
+    transition: all .15s ease-in-out;
+}
+
+.add-job:hover {
+    border-bottom: 1px solid var(--subtle-grey);
+}
+
+.job-app-heading .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: end;
+    width: 400px;
+}
+
 /* Background designs */
 
 .job-board > .bg-blob {

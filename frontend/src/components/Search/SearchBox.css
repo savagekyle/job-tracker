@@ -38,7 +38,7 @@
     margin-inline: auto;
 }
 
-.searchbox input {
+.search-bar-container input {
     padding: 1rem 2rem;
     background-color: var(--light-grey1);
     border: 1px solid var(--light-grey2);
@@ -46,7 +46,7 @@
     width: 100%;
 }
 
-.searchbox input:focus-visible {
+.search-bar-container input:focus-visible {
     outline: 1px auto var(--accent-color1) !important;
 }
 
