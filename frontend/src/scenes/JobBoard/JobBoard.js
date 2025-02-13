@@ -33,6 +33,7 @@ const JobBoard = () => {
 
     const handleJobClick = (job) => {
       setSelectedJob(job);
+      console.log(selectedJob);
     };
 
     const refreshJobs = async () => {
@@ -99,6 +100,7 @@ const JobBoard = () => {
                       pay={job.pay}
                       onClick={() => handleJobClick(job)}
                       refreshJobs={refreshJobs}
+                      selectedJob={selectedJob}
                     />
                   ))
                 ) : (

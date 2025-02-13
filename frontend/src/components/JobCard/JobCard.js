@@ -23,7 +23,7 @@ const JobCard = (props) => {
   };
 
   return (
-    <div className="job-card" onClick={props.onClick}>
+    <div className={`job-card ${props.selectedJob.id === props.id ? "active" : ""}`} onClick={props.onClick}>
         <h4 className="title">{props.title}</h4>
         <p className="company">{props.company}</p>
         <p className="location">{props.location}</p>
