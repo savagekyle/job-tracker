@@ -33,3 +33,23 @@
 .application-expanded .job-desc h3 {
     font-size: 24px;
 }
+
+.application-expanded .active-top {
+    position: relative
+}
+
+.application-expanded a {
+    position: absolute;
+    font-size: var(--font-s);
+    background-color: var(--background-canvas);
+    padding: .3rem 1rem;
+    border-radius: var(--border-radius);
+    width: fit-content;
+    right: 0;
+    bottom: 0;
+    transition: all .3s ease-in-out;
+}
+
+.application-expanded a:hover {
+    background-color: var(--light-grey2);
+}
