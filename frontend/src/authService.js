@@ -63,32 +63,30 @@ export const logoutUser = async () => {
 // Save Job Data to Firestore under the authenticated user
 export const saveJobData = async (user, jobData) => {
     if (!user || !user.uid) {
-        console.error("❌ Error: User is not authenticated or user.uid is undefined", user);
+        console.error("Error: User is not authenticated or user.uid is undefined", user);
         return { error: "User is not authenticated" };
     }
 
     try {
-        console.log("✅ Saving job data for user:", user.uid);
-        console.log("📌 Job Data:", jobData);
-
+        console.log("Saving job data for user:", user.uid);
         const db = getFirestore();
         const userJobsRef = collection(db, "users", user.uid, "jobs");
 
         await addDoc(userJobsRef, {
             date: jobData.date || null,
-            company: jobData.company || "Unknown",
-            jobTitle: jobData["job-title"] || "Unknown",
-            location: jobData.location || "Unknown",
+            company: jobData.company || "Company Unknown",
+            jobTitle: jobData["job-title"] || "Title Unknown",
+            location: jobData.location || "Location Unknown",
             description: jobData.description || "No description available",
-            pay: jobData.pay || "Not provided",
+            pay: jobData.pay,
             url: jobData.url || "No URL",
             savedAt: new Date(),
         });
 
-        console.log("✅ Job successfully saved!");
+        console.log("Job successfully saved!");
         return { success: true };
     } catch (error) {
-        console.error("❌ Error saving job data:", error);
+        console.error("Error saving job data:", error);
         return { error: error.message };
     }
 };
@@ -110,7 +108,6 @@ export const getUserJobs = async () => {
                 const querySnapshot = await getDocs(q);
                 let jobs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-                console.log("Fetched jobs:", jobs);
                 resolve(jobs);
             } catch (error) {
                 console.error("Error fetching jobs:", error);
@@ -127,7 +124,7 @@ export const deleteJob = async (jobId) => {
     const user = auth.currentUser;
 
     if (!user || !user.uid) {
-        console.error("❌ Error: User is not authenticated or user.uid is undefined", user);
+        console.error("Error: User is not authenticated or user.uid is undefined", user);
         return { error: "User is not authenticated" };
     }
 
@@ -137,10 +134,10 @@ export const deleteJob = async (jobId) => {
         const jobRef = doc(db, "users", user.uid, "jobs", jobId);
         await deleteDoc(jobRef);
 
-        console.log("✅ Job successfully deleted!");
+        console.log("Job successfully deleted!");
         return { success: true };
     } catch (error) {
-        console.error("❌ Error deleting job:", error);
+        console.error("Error deleting job:", error);
         return { error: error.message };
     }
 };

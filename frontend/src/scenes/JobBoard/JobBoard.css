@@ -9,7 +9,6 @@
 }
 
 .job-board h1 {
-    margin-block: 3rem 1.5rem;
     font-weight: 400;
     font-size: var(--font-xxl);
 }
@@ -35,8 +34,9 @@
 
 
 .job-app-heading {
+    margin-block: 3rem 1.5rem;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
 }
 
@@ -61,6 +61,19 @@
     gap: 1rem;
     align-items: end;
     width: 400px;
+}
+
+.job-app-heading .active-search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.job-app-heading .active-search .close:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: all .2s ease-in-out;
 }
 
 /* Background designs */

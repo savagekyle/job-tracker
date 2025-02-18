@@ -6,6 +6,7 @@ import { getUserJobs } from "../../authService"
 import { useState, useEffect } from "react"
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import SearchInput from "../../components/Search/SearchInput"
+import CloseIcon from '@mui/icons-material/Close';
 
 const JobBoard = () => {
 
@@ -20,7 +21,6 @@ const JobBoard = () => {
           const jobData = await getUserJobs();
           setJobs(jobData);
           setSelectedJob(jobData[0]);
-          console.log(jobData[0]);
         } catch (error) {
           console.error("Failed to fetch jobs:", error);
         } finally {
@@ -78,7 +78,12 @@ const JobBoard = () => {
                     <AddBoxIcon />
                   </div>
                   :
-                  <SearchInput />
+                  <div className="active-search">
+                    <CloseIcon className="close" onClick={() => {
+                    setActiveSearch(!activeSearch)
+                  }} />
+                    <SearchInput refreshJobs={refreshJobs} />
+                  </div>              
               }
             </div>
             

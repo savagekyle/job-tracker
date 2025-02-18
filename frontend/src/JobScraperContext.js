@@ -29,7 +29,6 @@ export const JobScraperProvider = ({ children }) => {
   const handleScrape = async (scrapeUrl = url) => {
     if (!user || !user.uid) {
       setError("User is not authenticated");
-      console.error("❌ No authenticated user found.");
       return;
     }
   
@@ -38,11 +37,7 @@ export const JobScraperProvider = ({ children }) => {
       setJobData(response.data);
       setError("");
   
-      // Ensure the jobData doesn't contain circular references
       const sanitizedJobData = JSON.parse(JSON.stringify(response.data));
-  
-      // Log sanitized job data (no circular references)
-      console.log("Scraped Job Data:", sanitizedJobData);
   
       // Save job data to Firestore under the authenticated user
       const saveResponse = await saveJobData(user, sanitizedJobData);
